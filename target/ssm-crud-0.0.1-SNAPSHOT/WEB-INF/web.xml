@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	
-	<!-- 1、启动spring容器 -->
+	<!-- 1、启动spring容器  默认启动位置:/WEB-INF/applicationContext.xml-->
 	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -30,7 +30,10 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 3、字符编码过滤器 ,一定要放在所有过滤器之前-->
+	<!-- 3、字符编码过滤器 ,一定要放在所有过滤器之前
+		<url-pattern>/</url-pattern> 会匹配到/login这样的路径型url，不会匹配到模式为*.jsp这样的后缀型url
+		<url-pattern>/*</url-pattern> 会匹配所有url：路径型的和后缀型的url(包括/login,*.jsp,*.js和*.html等)
+	-->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -62,6 +65,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 支持通过Ajax直接发送PUT之类的请求 -->
 	<filter>
 		<filter-name>HttpPutFormContentFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>

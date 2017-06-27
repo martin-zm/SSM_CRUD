@@ -26,7 +26,9 @@ import com.github.pagehelper.PageInfo;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+//用来声明加载的ApplicationContex是一个WebApplicationContext，加载资源的位置默认是src/main/webapp
 @WebAppConfiguration
+//file:加载非编译类的文件系统，即：作为 URL 从文件系统中加载。 classpath:加载编译的class文件系统，即：从classpath中加载。
 @ContextConfiguration(locations = { "classpath:applicationContext.xml",
 		"file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml" })
 public class MvcTest {
@@ -44,7 +46,7 @@ public class MvcTest {
 	@Test
 	public void testPage() throws Exception {
 		//模拟请求拿到返回值
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/emps").param("pn", "5"))
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/emps_test").param("pn", "5"))
 				.andReturn();
 		
 		//请求成功以后，请求域中会有pageInfo；我们可以取出pageInfo进行验证
@@ -58,7 +60,7 @@ public class MvcTest {
 		for (int i : nums) {
 			System.out.print(" "+i);
 		}
-		
+		System.out.println();
 		//获取员工数据
 		List<Employee> list = pi.getList();
 		for (Employee employee : list) {

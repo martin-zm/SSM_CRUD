@@ -77,7 +77,7 @@ public class EmployeeController {
 		return Msg.success().add("pageInfo", page);
 	}
 
-	//@RequestMapping("/emps")
+	@RequestMapping("/emps_test")
 	public String getEmps(
 			@RequestParam(value="pn", defaultValue="1" ) Integer pn, Model model) {		
 		

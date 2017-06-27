@@ -106,6 +106,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<!-- Spring4测试的时候，需要servlet3.0的支持  -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
